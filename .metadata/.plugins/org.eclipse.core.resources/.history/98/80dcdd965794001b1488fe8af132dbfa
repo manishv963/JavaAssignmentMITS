@@ -1,0 +1,135 @@
+package com.mits.assignment.JavaAssignment;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.mits.assignment.JavaAssignment.Employee.EmployeeClass;
+import com.mits.assignment.JavaAssignment.Employee.EmployeeClassFirstNameComparator;
+import com.mits.assignment.JavaAssignment.Employee.EmployeeClassHashCode;
+import com.mits.assignment.JavaAssignment.Employee.EmployeeClassHashCodeEquals;
+import com.mits.assignment.JavaAssignment.ThreadApplication.ThreadAssignment;
+
+@SpringBootTest
+class JavaAssignmentApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+	
+	
+	@Test
+	void testThreadAssignmentOutput() {
+		ThreadAssignment threadTest =  new ThreadAssignment();
+		String output = threadTest.executeThreadAssignment();
+		//System.out.println("Sas " +output);
+		output= output.substring(output.length()-1);
+		//System.out.println("Sas " +output);
+		
+		assertEquals("5", output);
+	}
+	
+	
+	//since we  have not implemented hashcode and equals methods so set will not be able to identify the employee object
+	@Test
+	void testAddEmployeeWithoutHashCodeEquals() {
+		EmployeeClass e1 = new EmployeeClass(1,"Manish", "Vasandnani");
+		EmployeeClass e2 = new EmployeeClass(1,"Manish", "Vasandnani");
+		Set<EmployeeClass> m1 = new HashSet<EmployeeClass>();
+		m1.add(e1);
+		m1.add(e2);
+		System.out.println("Employee size "+m1.size());
+		assertEquals(2,m1.size());
+	}
+		
+	
+	
+	
+	//By implementing hashcode method we are getting same hash values for both the object but then also set is considering both the elements
+	@Test
+	void testAddEmployeeWithHashCode() {
+		EmployeeClassHashCode e1 = new EmployeeClassHashCode(1,"Manish", "Vasandnani");
+		EmployeeClassHashCode e2 = new EmployeeClassHashCode(1,"Manish", "Vasandnani");
+		Set<EmployeeClassHashCode> m1 = new HashSet<EmployeeClassHashCode>();
+		m1.add(e1);
+		m1.add(e2);
+		System.out.println("Hashcode "+e1.hashCode());
+		System.out.println("hascide "+e2.hashCode());
+		System.out.println("Employee size "+m1.size());
+		assertEquals(2,m1.size());
+	}
+	
+	//after implementing hashcode and equals  set is able to identify both the employee object with the same details
+
+	@Test
+	void testAddEmployeeWithHashCodeAndEquals() {
+		EmployeeClassHashCodeEquals e1 = new EmployeeClassHashCodeEquals(1,"Manish", "Vasandnani");
+		EmployeeClassHashCodeEquals e2 = new EmployeeClassHashCodeEquals(1,"Manish", "Vasandnani");
+		Set<EmployeeClassHashCodeEquals> m1 = new HashSet<EmployeeClassHashCodeEquals>();
+		m1.add(e1);
+		m1.add(e2);
+		System.out.println("Hashcode equals "+e1.hashCode());
+		System.out.println("hascide equals "+e2.hashCode());
+		System.out.println("Employee size "+m1.size());
+		assertEquals(1,m1.size());
+	}
+
+	
+	//by default we are sorting the employee by Id
+	@Test
+	void testEmployeeTreeSetDefaultSorting() {
+		try {
+		EmployeeClass e1 = new EmployeeClass(1,"Manish", "Vasandnani");
+		EmployeeClass e2 = new EmployeeClass(2,"Ashish", "Bajaj");
+		EmployeeClass e3 = new EmployeeClass(3,"Kishore", "Ramchandani");
+		Set<EmployeeClass> employeeTreeSet = new TreeSet<EmployeeClass>();
+		employeeTreeSet.add(e1);
+		employeeTreeSet.add(e2);
+		employeeTreeSet.add(e3);
+		for( EmployeeClass ee:employeeTreeSet) {
+			System.out.println(ee.toString());
+		}
+		
+		assertEquals(1,employeeTreeSet.iterator().next().getId());
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	//by default we are sorting the employee by Id
+		@Test
+		void testEmployeeTreeSetFirstName() {
+			try {
+				EmployeeClassFirstNameComparator e1 = new EmployeeClassFirstNameComparator(1,"Manish", "Vasandnani");
+				
+				EmployeeClassFirstNameComparator e2 = new EmployeeClassFirstNameComparator(2,"Ashis", "Bajaj");
+				EmployeeClassFirstNameComparator e3 = new EmployeeClassFirstNameComparator(3,"Kishore", "Ramchandani");
+				EmployeeClassFirstNameComparator e4 = new EmployeeClassFirstNameComparator(4,"Anuj", "Ramchandani");
+
+				Set<EmployeeClassFirstNameComparator> employeeTreeSet = new TreeSet<EmployeeClassFirstNameComparator>();
+				employeeTreeSet.add(e4);
+				employeeTreeSet.add(e1);
+			employeeTreeSet.add(e2);
+			employeeTreeSet.add(e3);
+			
+			System.out.println("first name sorting");
+			for( EmployeeClassFirstNameComparator ee:employeeTreeSet) {
+				System.out.println(ee.toString());
+			}
+			
+			assertEquals("Ashish",employeeTreeSet.iterator().next().getFirstName());
+			}
+			catch(Exception e) {
+				System.out.println(e);
+			}
+		}
+
+	
+}

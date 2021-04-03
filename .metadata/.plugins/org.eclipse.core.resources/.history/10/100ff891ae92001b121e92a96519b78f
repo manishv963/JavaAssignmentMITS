@@ -1,0 +1,9 @@
+package com.mits.assignment.JavaAssignment.ThreadApplication;
+
+public class ThreadClasses {
+
+	
+	 class Thread1 implements Runnable{
+		
+	}
+}

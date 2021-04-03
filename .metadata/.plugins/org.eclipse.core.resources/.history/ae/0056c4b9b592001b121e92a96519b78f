@@ -1,0 +1,82 @@
+package com.mits.assignment.JavaAssignment.ThreadApplication;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class ThreadAssignment {
+	public static String resultString = "";
+	public String executeThreadAssignment() throws InterruptedException{
+		
+		Thread1 t1 =  new Thread1();
+		Thread2 t2 =  new Thread2();
+		Thread3 t3 =  new Thread3();
+		Thread4 t4 =  new Thread4();
+		Thread5 t5 =  new Thread5();
+		
+		t1.start();
+		t2.start();
+		t3.start();
+		t4.start();
+		t1.join();
+		t2.join();
+		t3.join();
+		t4.join();
+		
+			t5.start();
+			System.out.println("hello "+ resultString);
+			System.out.println(t4.getState().toString());
+			
+			return resultString;
+	
+		
+	}
+}
+
+
+class Thread1 extends Thread{
+
+	@Override
+	public void run() {
+		System.out.println("Thread 1");
+		ThreadAssignment.resultString = ThreadAssignment.resultString+"1";
+	}
+	
+}
+class Thread2 extends Thread{
+
+	@Override
+	public void run() {
+		System.out.println("Thread 2");
+		ThreadAssignment.resultString = ThreadAssignment.resultString+"2";
+	}
+
+	
+}
+class Thread3 extends Thread{
+
+	@Override
+	public void run() {
+		System.out.println("Thread 3");
+		ThreadAssignment.resultString = ThreadAssignment.resultString+"3";
+	}
+	
+}
+class Thread4 extends Thread{
+
+	@Override
+	public void run() {
+		System.out.println("Thread 4");
+		ThreadAssignment.resultString = ThreadAssignment.resultString+"4";
+	}
+	
+}
+class Thread5 extends Thread{
+
+	@Override
+	public void run() {
+		System.out.println("Thread 5");
+		ThreadAssignment.resultString = ThreadAssignment.resultString+"5";
+	}
+	
+}
+

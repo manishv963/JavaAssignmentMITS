@@ -1,0 +1,79 @@
+package com.mits.assignment.JavaAssignment;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.mits.assignment.JavaAssignment.Employee.EmployeeClass;
+import com.mits.assignment.JavaAssignment.Employee.EmployeeClassHashCode;
+import com.mits.assignment.JavaAssignment.ThreadApplication.ThreadAssignment;
+
+@SpringBootTest
+class JavaAssignmentApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+	
+	
+	@Test
+	void testThreadAssignmentOutput() {
+		ThreadAssignment threadTest =  new ThreadAssignment();
+		String output = threadTest.executeThreadAssignment();
+		//System.out.println("Sas " +output);
+		output= output.substring(output.length()-1);
+		//System.out.println("Sas " +output);
+		
+		assertEquals("5", output);
+	}
+	
+	
+	//since we  have not implemented hashcode and equals methods so set will not be able to identify the employee object
+	@Test
+	void testAddEmployeeWithoutHashCodeEquals() {
+		EmployeeClass e1 = new EmployeeClass(1,"Manish", "Vasandnani");
+		EmployeeClass e2 = new EmployeeClass(1,"Manish", "Vasandnani");
+		Set<EmployeeClass> m1 = new HashSet<EmployeeClass>();
+		m1.add(e1);
+		m1.add(e2);
+		System.out.println("Employee size "+m1.size());
+		assertEquals(2,m1.size());
+	}
+		
+	
+	
+	
+	//By implementing hashcode method we are getting same hash values for both the object but then also set is considering both the elements
+	@Test
+	void testAddEmployeeWithHashCode() {
+		EmployeeClassHashCode e1 = new EmployeeClassHashCode(1,"Manish", "Vasandnani");
+		EmployeeClassHashCode e2 = new EmployeeClassHashCode(1,"Manish", "Vasandnani");
+		Set<EmployeeClassHashCode> m1 = new HashSet<EmployeeClassHashCode>();
+		m1.add(e1);
+		m1.add(e2);
+		System.out.println("Hashcode "+e1.hashCode());
+		System.out.println("hascide "+e2.hashCode());
+		System.out.println("Employee size "+m1.size());
+		assertEquals(2,m1.size());
+	}
+
+	@Test
+	void testAddEmployeeWithHashCodeAndEquals() {
+		EmployeeClassHashCode e1 = new EmployeeClassHashCode(1,"Manish", "Vasandnani");
+		EmployeeClassHashCode e2 = new EmployeeClassHashCode(1,"Manish", "Vasandnani");
+		Set<EmployeeClassHashCode> m1 = new HashSet<EmployeeClassHashCode>();
+		m1.add(e1);
+		m1.add(e2);
+		System.out.println("Hashcode "+e1.hashCode());
+		System.out.println("hascide "+e2.hashCode());
+		System.out.println("Employee size "+m1.size());
+		assertEquals(2,m1.size());
+	}
+
+}

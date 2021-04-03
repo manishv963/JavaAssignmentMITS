@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="JavaAssignmentApplicationTests" project="JavaAssignment" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.mits.assignment.JavaAssignment.JavaAssignmentApplicationTests" time="0.883" displayname="JavaAssignmentApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.mits.assignment.JavaAssignment.JavaAssignmentApplicationTests]">
+    <testcase name="testThreadAssignmentOutput" classname="com.mits.assignment.JavaAssignment.JavaAssignmentApplicationTests" time="0.851" displayname="testThreadAssignmentOutput()" uniqueid="[engine:junit-jupiter]/[class:com.mits.assignment.JavaAssignment.JavaAssignmentApplicationTests]/[method:testThreadAssignmentOutput()]"/>
+    <testcase name="testAddEmployeeWithoutHashCodeEquals" classname="com.mits.assignment.JavaAssignment.JavaAssignmentApplicationTests" time="0.01" displayname="testAddEmployeeWithoutHashCodeEquals()" uniqueid="[engine:junit-jupiter]/[class:com.mits.assignment.JavaAssignment.JavaAssignmentApplicationTests]/[method:testAddEmployeeWithoutHashCodeEquals()]"/>
+    <testcase name="contextLoads" classname="com.mits.assignment.JavaAssignment.JavaAssignmentApplicationTests" time="0.022" displayname="contextLoads()" uniqueid="[engine:junit-jupiter]/[class:com.mits.assignment.JavaAssignment.JavaAssignmentApplicationTests]/[method:contextLoads()]"/>
+  </testsuite>
+</testrun>
